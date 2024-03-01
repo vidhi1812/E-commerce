@@ -1,0 +1,10 @@
+const express = require('express')
+const router = express.Router()
+const auth = require('../Controller/Auth-controller')
+const validate = require('../Middleware/validator')
+const {Userchema, Loginchema} = require('../Validation/Auth-validation')
+const authenticate = require ('../Middleware/Auth-middleware')
+router.route('/register').post(validate(Userchema), auth.register)
+router.route('/login').post(validate(Loginchema), auth.login)
+router.route('/validtoken').get(authenticate,auth.validtoken)
+module.exports = router;
