@@ -22,6 +22,11 @@ const Userchema = z.object({
     .email({ message: "Invalid Email" })
     .max(50, { message: "At most 50 char" })
     .trim(),
+  phone: z
+    .string({ required_error: "Phone is required" })
+    .trim()
+    .min(10, { message: "At least 10 char" })
+    .max(10, { message: "At most 10 char" }),
   password: z
     .string({ required_error: "Password is required" })
     .trim()
