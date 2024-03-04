@@ -3,8 +3,8 @@ const bcrtpt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const cart = new mongoose.Schema({
   pid:String,
-  email:String,
-  username:String
+  name:String,
+  price:String,
 })
 const userSchema = new mongoose.Schema({
   username: {
@@ -18,6 +18,12 @@ const userSchema = new mongoose.Schema({
     required: true,
     min: 6,
     max: 255,
+  },
+  phone :{
+    type: String,
+    required: true,
+    min: 10,
+    max: 10
   },
   password: {
     type: String,

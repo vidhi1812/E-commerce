@@ -7,4 +7,8 @@ const authenticate = require ('../Middleware/Auth-middleware')
 router.route('/register').post(validate(Userchema), auth.register)
 router.route('/login').post(validate(Loginchema), auth.login)
 router.route('/validtoken').get(authenticate,auth.validtoken)
+router.route('/product').get(auth.product)
+router.route('/product/:id').patch(authenticate,auth.addtocart)
+router.route('/cart').get(authenticate,auth.fetchproduct)
+router.route('/cart/:id').delete(authenticate,auth.deletecart)
 module.exports = router;
