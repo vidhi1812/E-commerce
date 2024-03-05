@@ -44,7 +44,10 @@ const AuthMiddleware = async (req, res, next) => {
     req.user_id = user._id;
     next();
   } catch (error) {
-    res.status(401).json({ error: "Please authenticate" });
+    const err = [
+      err.errors[0].message, 401
+    ];
+    next(err)
   }
 };
 module.exports = AuthMiddleware;

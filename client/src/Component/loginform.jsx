@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../Assets/css/loginform.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import {useAuth} from "../store/store";
+axios.defaults.withCredentials = true;
 const LoginForm = () => {
+  const {isUserLoggedIn,isloading} = useAuth();
   const navigate = useNavigate();
+  useEffect(()=>{
+    if(isUserLoggedIn) navigate('/')
+  })
   const [user, setUser] = useState({
     email: "",
     password: "",
