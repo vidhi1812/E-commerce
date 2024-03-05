@@ -53,7 +53,7 @@ userSchema.pre("save", async function (next) {
         { _id: this._id, email: this.email },
         process.env.SECRET_KEY,
         {
-          expiresIn: "1h",
+          expiresIn: "1m",
         }
       );
     } catch (err) {
@@ -61,5 +61,19 @@ userSchema.pre("save", async function (next) {
       next(error);
     }
   };
+  userSchema.methods.generateRefeshAuthToken = async function () {
+    try {
+      return jwt.sign(
+        { _id: this._id, email: this.email },
+        process.env.REFRESH_SECRET_KEY,
+        {
+          expiresIn: "3m",
+        }
+      );
+    } catch (err) {
+      const error = [400, err.message];
+      next(error);
+    }
+  }
 const User = mongoose.model("User", userSchema);
 module.exports = User;

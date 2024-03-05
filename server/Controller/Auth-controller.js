@@ -1,6 +1,7 @@
 const User = require("../Models/User-Model");
 const Product = require("../Models/Product-model");
 const bcrypt = require("bcryptjs");
+const jwt= require("jsonwebtoken");
 const register = async (req, res) => {
   try {
     const { username, email, phone, password } = req.body;
@@ -31,7 +32,12 @@ const login = async (req, res) => {
       return res.status(400).json({ msg: "Invalid credentials" });
     }
     const token = await user.generateAuthToken();
-    res.status(200).json({ message: "login suceesful", token });
+    const refershToken = await user.generateRefeshAuthToken();
+    res
+    .cookie("token",token,{httpOnly:true,secure:true,maxAge:60*1000})
+      .cookie("refershToken", refershToken, { httpOnly: true,secure:true,maxAge:60*3*1000})
+      .status(200)
+      .json({ message: "login suceesful"});
   } catch (err) {
     res.status(400).json(err);
   }
@@ -72,7 +78,7 @@ const product = async (req, res) => {
 const addtocart = async (req, res) => {
   try {
     const user = req.user;
-    const product = await Product.findById({_id:req.params.id});
+    const product = await Product.findById({ _id: req.params.id });
     if (!product) {
       return res.status(400).json({ msg: "Product does not exist" });
     }
@@ -84,32 +90,39 @@ const addtocart = async (req, res) => {
   }
 };
 const fetchproduct = async (req, res) => {
-    try{
-        const user = req.user;
-        const product = user.carts;
-        res.status(200).json(product)
+  try {
+    const user = req.user;
+    const product = user.carts;
+    res.status(200).json(product);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+};
+const deletecart = async (req, res) => {
+  try {
+    const user = req.user;
+    const product = user.carts;
+    const productid = req.params.id;
+    const productindex = product.findIndex(
+      (product) => product._id == productid
+    );
+    if (productindex !== -1) {
+      product.splice(productindex, 1);
+      await user.save();
+      res.status(200).json({ msg: "Product removed from cart successfully" });
+    } else {
+      res.status(400).json({ msg: "Product does not exist in cart" });
     }
-    catch(err){
-        res.status(400).json(err)
-    }
-}
-const deletecart = async(req,res) =>{
-    try{
-        const user = req.user;
-        const product = user.carts;
-        const productid = req.params.id;
-        const productindex = product.findIndex((product) => product._id == productid);
-        if(productindex !== -1){
-            product.splice(productindex,1);
-            await user.save();
-            res.status(200).json({msg:"Product removed from cart successfully"})
-        }
-        else{
-            res.status(400).json({msg:"Product does not exist in cart"})
-        }
-    }
-    catch(err){
-        res.status(400).json(err)
-    }
-}
-module.exports = { register, login, validtoken, product, addtocart,fetchproduct,deletecart};
+  } catch (err) {
+    res.status(400).json(err);
+  }
+};
+module.exports = {
+  register,
+  login,
+  validtoken,
+  product,
+  addtocart,
+  fetchproduct,
+  deletecart
+};
