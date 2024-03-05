@@ -42,6 +42,15 @@ const login = async (req, res) => {
     res.status(400).json(err);
   }
 };
+const logout =async(req,res)=>{
+  try{
+    res.clearCookie("token")
+    res.clearCookie("refershToken")
+    res.status(200).json({message:"logout successful"})
+  }catch(err){
+    res.status(400).json(err)
+  }
+}
 const validtoken = async (req, res) => {
   try {
     const { username, email, carts } = req.user;
@@ -124,5 +133,6 @@ module.exports = {
   product,
   addtocart,
   fetchproduct,
-  deletecart
+  deletecart,
+  logout
 };

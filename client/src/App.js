@@ -1,12 +1,16 @@
-import logo from './logo.svg';
-import './App.css'; 
-import Landing from './Component/landing';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import LoginForm from "./Component/loginform";
+import Signupform from "./Component/Signupform";
+
 function App() {
   return (
-  
-  <div>
-    <Landing/>
-  </div>
+    <>
+    <Routes>
+      <Route exact path="/login" element={<LoginForm />} />
+      <Route exact path="/signup" element={<Signupform />} />
+    </Routes>
+    </>
   );
 }
 
