@@ -1,0 +1,50 @@
+.logcar {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+   background-image: url("./login.jpg");
+   background-size: cover;
+}
+.login-card {
+  border: 2px;
+  width: 24vw;
+  height: 52%;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  background:rgba(0,0,0,0.3);
+}
+.lc {
+  width: 16vw;
+  height: 5vh;
+  background-color:lightyellow;
+}
+.button {
+  border-radius: 20px;
+  width: 9rem;
+  height: 3rem;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 1.5rem;
+background:rgba(0,0,0,0.4);
+}
+button:hover{
+  color:firebrick;
+}
+.beauty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.plog {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 100px;
+}
+.head{
+   letter-spacing: .4rem;
+   color:white;
+}
