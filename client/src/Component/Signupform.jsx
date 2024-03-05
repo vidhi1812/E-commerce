@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import "../Assets/css/Signupform.css";
-
+import { NavLink,useNavigate } from "react-router-dom";
+import axios from "axios";
+import {toast} from 'react-toastify';
 export const Signupform = () => {
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     username: "",
     phone: "",
@@ -15,9 +18,32 @@ export const Signupform = () => {
       [name]: value,
     });
   };
-  const submitOn = (e) => {
+  const submitOn = async(e) => {
     e.preventDefault();
-    console.log(user);
+    try{
+      const res = await axios.post("http://localhost:9000/api/auth/register",user,{
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      console.log(res)
+      if(res.status===201){
+        setUser({
+          username: "",
+          phone: "",
+          email: "",
+          password: "",
+        });
+        toast.success('Register Successfully');
+        navigate('/login');
+      }
+      else{
+        toast.error('Register Failed');
+      }
+    }
+    catch(e){
+      console.log(e);
+    }
   };
   return (
     <div className="Signup-card">
@@ -51,7 +77,6 @@ export const Signupform = () => {
                 value={user.phone}
               />
             </div>
-
             <div>
               <input
                 type="email"
@@ -64,7 +89,6 @@ export const Signupform = () => {
                 value={user.email}
               />
             </div>
-
             <div>
               <input
                 type="password"
@@ -77,19 +101,15 @@ export const Signupform = () => {
                 value={user.password}
               />
             </div>
-
-            <div></div>
-
             <div className="beauty">
               <button type="submit" className="button1">
-                {" "}
                 SIGNUP
               </button>
             </div>
           </form>
         </div>
         <div>
-          <p className="plog">Already Register?</p>
+          <p className="plog">Already Register?<NavLink to='/login'>Login</NavLink></p>
         </div>
       </div>
     </div>
