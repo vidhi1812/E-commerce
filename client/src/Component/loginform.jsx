@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import "../Assets/css/loginform.css";
+import { NavLink, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
 const LoginForm = () => {
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -12,9 +16,32 @@ const LoginForm = () => {
       [name]: value,
     });
   };
-  const submitOn = (e) => {
+  const submitOn = async (e) => {
     e.preventDefault();
-    console.log(user);
+    try {
+      const res = await axios.post(
+        "http://localhost:9000/api/auth/login",
+        user,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log(res);
+      if (res.status === 200) {
+        setUser({
+          email: "",
+          password: "",
+        });
+        toast.success("Login Successfully");
+        navigate('/')
+      } else {
+        toast.error("Login Failed");
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <div className="logcar">
@@ -58,7 +85,9 @@ const LoginForm = () => {
           </form>
         </div>
         <div>
-          <p className="plog">Don't have account?</p>
+          <p className="plog">
+            Don't have account?<NavLink to="/signup">Signup</NavLink>
+          </p>
         </div>
       </div>
     </div>
