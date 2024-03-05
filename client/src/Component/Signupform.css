@@ -1,0 +1,70 @@
+.namecard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.name {
+  width: 8.5vw;
+  height: 5vh;
+  margin-left: 0.6rem;
+  border-radius: 5px;
+  background-color:lightyellow;
+}
+.lc1 {
+  margin: 0.6rem;
+  width: 18vw;
+  height:5vh;
+  border-radius: 5px;
+  background-color:lightyellow;
+}
+.button1{
+    border-radius: 20px;
+  width: 9rem;
+  height: 3rem;
+  /* margin-left:5rem; */
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 1.5rem;
+  background: transparent;
+}
+
+.button1:hover{
+transition: .5sec;
+color:darkkhaki;
+}
+.Signup-card{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   /* background-color: #4158d0;
+    background-image: linear-gradient(
+      43deg,
+      #4158d0 0%,
+      #c850c0 46%,
+      #ffcc70 100% 
+     );  */
+     background-image: url("./login.jpg");
+     background-size: cover;
+  
+}
+
+.Sign-car{
+    border: 2px;
+    width: 24vw;
+    height: 60%;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0,0.8);
+    background:rgba(0,0,0,0.3);   
+}
+.head1{
+    letter-spacing: .4rem;
+  color:white;
+}
+.plog{
+   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+   font-weight: 200px;
+}
