@@ -1,14 +1,11 @@
 import logo from './logo.svg';
-import './App.css';
-  import LoginForm from './Component/loginform'
-import Signupform from './Component/Signupform';
-
+import './App.css'; 
+import Landing from './Component/landing';
 function App() {
   return (
   
   <div>
-    <Signupform/>
-  <LoginForm/>
+    <Landing/>
   </div>
   );
 }

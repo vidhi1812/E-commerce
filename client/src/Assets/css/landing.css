@@ -1,0 +1,11 @@
+.ecomm{
+  
+}
+.landing-card{
+    border:2px solid black;
+    width:100%;
+    height:100vh;
+
+    background-image: url("../Images/ecommerce.jpg");
+     background-size: cover;
+}
