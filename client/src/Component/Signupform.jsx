@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import "./Signupform.css";
+import "../Assets/css/Signupform.css";
 
 export const Signupform = () => {
   const [user, setUser] = useState({
-    username:"",
-    number: "",
+    username: "",
+    phone: "",
     email: "",
     password: "",
   });
@@ -21,7 +21,6 @@ export const Signupform = () => {
   };
   return (
     <div className="Signup-card">
-       
       <div className="Sign-car">
         <div>
           <h2 className="head1">SIGNUP</h2>
@@ -39,19 +38,17 @@ export const Signupform = () => {
                 autoComplete="off"
                 value={user.username}
               />
-
-             
             </div>
             <div>
               <input
                 type="number"
-                placeholder="Enter Your Mobile Number"
-                name="number"
+                placeholder="Enter Your Mobile phone"
+                name="phone"
                 onChange={handlechange}
                 className="lc1"
                 required
                 autoComplete="off"
-                value={user.number}
+                value={user.phone}
               />
             </div>
 
