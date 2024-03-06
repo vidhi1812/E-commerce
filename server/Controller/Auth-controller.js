@@ -34,8 +34,8 @@ const login = async (req, res) => {
     const token = await user.generateAuthToken();
     const refershToken = await user.generateRefeshAuthToken();
     res
-    .cookie("token",token,{httpOnly:true,secure:true,maxAge:60*1000})
-      .cookie("refershToken", refershToken, { httpOnly: true,secure:true,maxAge:60*3*1000})
+    .cookie("token",token,{httpOnly:true,secure:true,maxAge:60*1000,sameSite:'strict'})
+      .cookie("refershToken", refershToken, { httpOnly: true,secure:true,maxAge:60*3*1000,sameSite:'strict'})
       .status(200)
       .json({ message: "login suceesful"});
   } catch (err) {
