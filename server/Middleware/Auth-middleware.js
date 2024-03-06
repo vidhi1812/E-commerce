@@ -31,20 +31,22 @@ const AuthMiddleware = async (req, res, next) => {
           httpOnly: true,
           secure: true,
           maxAge: 60 * 1000,
+          sameSite:'strict'
         })
         .cookie("refershToken", refershToken, {
           httpOnly: true,
           secure: true,
           maxAge: 60 * 1000 * 3,
+          sameSite:'strict'
         })
-        .status(200);
     }
     req.token = token;
     req.user = user;
     req.user_id = user._id;
     next();
   } catch (error) {
-    res.status(401).json({ error: "Please authenticate" });
+    const err = [error.message,401]
+    next(err)
   }
 };
 module.exports = AuthMiddleware;
