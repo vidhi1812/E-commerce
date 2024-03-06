@@ -5,8 +5,8 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-
-
+import "../Assets/css/product.css"
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 axios.defaults.withCredentials = true;
 const Product = () => {
   const navigate = useNavigate();
@@ -53,30 +53,30 @@ const Product = () => {
   };
   return (
     <div className="Product-section">
-      <div>
+      <div className="heading">
         {isUserLoggedIn ? (
           <h1>Welcome {user.username}</h1>
         ) : (
           <h1>Welcome Guest</h1>
         )}
       </div>
-      <div>
+      <div className="productlist">
         {product.map((item) => (
           <div key={item._id}>
-            <div>
-              <div>
-                <img src={item.image_url} alt="product" />
+            <div className="prodcart1">
+              <div className="prodct6">
+                <img className="pro5" src={item.image_url} alt="product" />
               </div>
-              <div>
-                <div>{item.name}</div>
-                <div>{item.price}</div>
+              <div className="pro_cart5443">
+                <div className="prort56">{item.name}</div>
+                <div className="prod47">{item.price}</div>
               </div>
-              <div>{item.description}</div>
-              <div>
-                <div>{item.category}</div>
-                <div>
+              <div className="pro_ct56">{item.description}</div>
+              <div className="pryu2">
+                <div className="prod_prop">{item.category}</div>
+                <div className="prod_btn">
                   <button className="btn" onClick={() => addcart(item._id)}>
-                    ADD TO CART
+                    ADD TO CART <AddShoppingCartIcon/>
                   </button>
                 </div>
               </div>
@@ -84,10 +84,10 @@ const Product = () => {
           </div>
         ))}
       </div>
-      <div>
+      <div className="page">
         <Stack spacing={2}>
           <Pagination
-            count={8}
+            count={9}
             size="small"
             page={currentPage}
             onChange={handlePageChange}
@@ -97,5 +97,4 @@ const Product = () => {
     </div>
   );
 };
-
 export default Product;
