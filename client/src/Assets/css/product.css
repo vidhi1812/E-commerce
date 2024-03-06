@@ -7,12 +7,11 @@
       box-shadow:0 0 0 10px rgba(0,0,0,0.1);
 } 
 .prodct6{
-     /* border:2px solid black; */
      width:20vw;
 }
 .pro5{
 width:20vw;
-height:14vw;
+height: 27vh;
 }
 .pro_cart5443{
      display: flex;
@@ -40,4 +39,18 @@ margin-left: 2px;
   background-color: blueviolet;
   color:white;
   font-size:17px;
+}
+.productlist{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.page{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem;
+}
+.heading{
+  text-align: center;
 }

@@ -62,7 +62,7 @@ const validtoken = async (req, res) => {
 const product = async (req, res) => {
   try {
     const page = parseInt(req.query.page);
-    const limit = 9;
+    const limit = 8;
     const startIndex = (page - 1) * limit;
     const endIndex = page * limit;
     const results = {};

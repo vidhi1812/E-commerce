@@ -5,6 +5,7 @@ const cart = new mongoose.Schema({
   pid:String,
   name:String,
   price:String,
+  image_url:String,
 })
 const userSchema = new mongoose.Schema({
   username: {
