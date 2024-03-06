@@ -6,6 +6,7 @@ import Landing from "./Component/landing";
 import Error from "./Component/error";
 import Logout from "./Component/logout";
 import Product from "./Component/Product";
+import Cart from "./Component/cart"
 
 function App() {
   return (
@@ -16,6 +17,8 @@ function App() {
       <Route exact path="/signup" element={<Signupform />} />
       <Route exact path="/logout" element={<Logout />} />
   <Route exact path='/product' element={<Product />}/>
+  <Route exact path='/cart' element={<Cart />}/>
+  
       <Route  path="*" element={<Error/>}/>
     </Routes>
     </>
