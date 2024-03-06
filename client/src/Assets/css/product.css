@@ -1,1 +1,42 @@
+.prodcart1{
+    border:2px solid black;
+      color:blue;
+      width:20vw;
+      height:45vh;
+      margin:2rem;
+      box-shadow:0 0 0 10px rgba(0,0,0,0.1);
+} 
+.prodct6{
+     /* border:2px solid black; */
+     width:20vw;
+}
+.pro5{
+width:20vw;
+}
+.pro_cart5443{
+     display: flex;
+     justify-content:space-between;
+     padding:.7rem;
+     
+}
+.pro_ct56{
+  font-size:.8rem;
+padding:0rem, 7rem;
+margin-left: 2px;
+}
 
+.pryu2{
+    display: flex;
+     justify-content:space-between;
+     padding:.7rem;
+     
+}
+.btn{
+    background: transparent;
+    border-radius:10px;
+}
+.btn:hover{
+  background-color: blueviolet;
+  color:white;
+  font-size:17px;
+}
