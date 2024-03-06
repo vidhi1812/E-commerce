@@ -3,32 +3,53 @@ import axios from "axios";
 import { useAuth } from "../store/store";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import Prod_cart from "./prod_card"
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 axios.defaults.withCredentials = true;
 
-
 const Product = () => {
+  const navigate = useNavigate();
   const { user, isUserLoggedIn } = useAuth();
   const [currentPage, setCurrentPage] = useState(1);
   const [product, setProduct] = useState([]);
   const handlePageChange = (event, page) => {
     setCurrentPage(page);
   };
-  useEffect(()=>{
+  useEffect(() => {
     const fetchProduct = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:9000/api/auth/product?page=${currentPage}`,{withCredentials: true,}
+          `http://localhost:9000/api/auth/product?page=${currentPage}`,
+          { withCredentials: true }
         );
-        setProduct(res.data);
-        console.log(res.data);
+        if (res.status === 200) {
+          setProduct(res.data);
+        }
       } catch (err) {
         console.log(err);
       }
     };
     fetchProduct();
-  
-  },[currentPage]);
+  }, [currentPage]);
+  const addcart = async (id) => {
+    if (!isUserLoggedIn) {
+      return toast.error("please login first"), navigate("/login");
+    }
+    try {
+      const res = await axios.patch(
+        `http://localhost:9000/api/auth/product/${id}`,
+        {
+          withCredentials: true,
+        }
+      );
+      if(res.status === 200){
+        toast.success("Product add")
+      }
+      else{
+        toast.error("try again")
+      }
+    } catch (err) {}
+  };
   return (
     <div className="Product-section">
       <div>
@@ -40,26 +61,32 @@ const Product = () => {
       </div>
       <div>
         {product.map((item) => (
-            <div key={item._id}>
-            {/* <h1>{item.name}</h1>
-            <p>{item.description}</p>
-            <p>{item.price}</p>
-            <p>{item.category}</p>
-            <img src={item.image_url} alt="product" /> */}
-           <Prod_cart
-           image={item.iamge_url}
-           name={item.name}
-           price={item.price}
-           description={item.description}
-           category={item.category}
-           /> 
+          <div key={item._id}>
+            <div>
+              <div>
+                <img src={item.image_url} alt="product" />
+              </div>
+              <div>
+                <div>{item.name}</div>
+                <div>{item.price}</div>
+              </div>
+              <div>{item.description}</div>
+              <div>
+                <div>{item.category}</div>
+                <div>
+                  <button className="btn" onClick={() => addcart(item._id)}>
+                    ADD TO CART
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         ))}
-        </div>
+      </div>
       <div>
         <Stack spacing={2}>
           <Pagination
-            count={7}
+            count={8}
             size="small"
             page={currentPage}
             onChange={handlePageChange}
