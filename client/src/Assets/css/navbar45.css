@@ -1,0 +1,46 @@
+
+  .nav-card {
+    background-color:transparent;
+    padding: 10px;
+    display: flex;
+    justify-content: space-evenly;
+  
+  }
+  
+  .ecomm {
+    margin-right: 26px;
+  }
+  
+  .logo {
+    width: 50px;
+    height: auto;
+    margin-left:2px;
+  }
+  
+  .nav-l {
+    list-style: none;
+    display: flex;
+  }
+  
+  .nav-l li {
+    margin-right: 23px;
+     font-size: 1.8rem;
+  }
+  
+  
+  .nav-l li a {
+    text-decoration: none;
+    color: #000000;
+    display: flex;
+    align-items: center;
+  }
+  
+ 
+
+
+ 
+ 
+  
+  
+  
+  
