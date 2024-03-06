@@ -1,11 +1,13 @@
 .ecomm{
-  
+    text-align: start;
+ 
 }
 .landing-card{
-    border:2px solid black;
-    width:100%;
+    width:100vw;
     height:100vh;
-
+    display : flex;
+    justify-content: center;
     background-image: url("../Images/ecommerce.jpg");
      background-size: cover;
+
 }
