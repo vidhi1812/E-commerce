@@ -4,7 +4,10 @@ import "../Assets/css/error.css"
   return (
 
 
-    <div>Page Not Found</div>
+    <div  className="error-card">
+      404:
+      Page Not Found
+      </div>
   )
 }
 export default Error;
