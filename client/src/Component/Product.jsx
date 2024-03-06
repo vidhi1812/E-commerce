@@ -5,8 +5,9 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-axios.defaults.withCredentials = true;
 
+
+axios.defaults.withCredentials = true;
 const Product = () => {
   const navigate = useNavigate();
   const { user, isUserLoggedIn } = useAuth();
