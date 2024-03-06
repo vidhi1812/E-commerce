@@ -41,7 +41,7 @@ const LoginForm = () => {
           password: "",
         });
         toast.success("Login Successfully");
-        navigate('/')
+        navigate("/");
       } else {
         toast.error("Login Failed");
       }
