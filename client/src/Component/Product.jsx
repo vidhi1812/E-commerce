@@ -3,7 +3,9 @@ import axios from "axios";
 import { useAuth } from "../store/store";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
+import Prod_cart from "./prod_card"
 axios.defaults.withCredentials = true;
+
 
 const Product = () => {
   const { user, isUserLoggedIn } = useAuth();
@@ -39,11 +41,18 @@ const Product = () => {
       <div>
         {product.map((item) => (
             <div key={item._id}>
-            <h1>{item.name}</h1>
+            {/* <h1>{item.name}</h1>
             <p>{item.description}</p>
             <p>{item.price}</p>
             <p>{item.category}</p>
-            <img src={item.image_url} alt="product" />
+            <img src={item.image_url} alt="product" /> */}
+           <Prod_cart
+           image={item.iamge_url}
+           name={item.name}
+           price={item.price}
+           description={item.description}
+           category={item.category}
+           /> 
           </div>
         ))}
         </div>
