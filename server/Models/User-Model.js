@@ -53,7 +53,7 @@ userSchema.pre("save", async function (next) {
         { _id: this._id, email: this.email },
         process.env.SECRET_KEY,
         {
-          expiresIn: "5m",
+          expiresIn: "2m",
         }
       );
     } catch (err) {
@@ -67,7 +67,7 @@ userSchema.pre("save", async function (next) {
         { _id: this._id, email: this.email },
         process.env.REFRESH_SECRET_KEY,
         {
-          expiresIn: "20m",
+          expiresIn: "5m",
         }
       );
     } catch (err) {

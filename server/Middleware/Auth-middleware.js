@@ -31,22 +31,21 @@ const AuthMiddleware = async (req, res, next) => {
           httpOnly: true,
           secure: true,
           maxAge: 60 * 1000,
+          sameSite:'strict'
         })
         .cookie("refershToken", refershToken, {
           httpOnly: true,
           secure: true,
           maxAge: 60 * 1000 * 3,
+          sameSite:'strict'
         })
-        .status(200);
     }
     req.token = token;
     req.user = user;
     req.user_id = user._id;
     next();
   } catch (error) {
-    const err = [
-      err.errors[0].message, 401
-    ];
+    const err = [error.message,401]
     next(err)
   }
 };

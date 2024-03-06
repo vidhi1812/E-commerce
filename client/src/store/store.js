@@ -1,5 +1,6 @@
 import { createContext,useContext ,useState,useEffect} from "react";
 import axios from "axios";
+import {toast} from "react-toastify";
 axios.defaults.withCredentials = true;
 export const AuthContext = createContext();
 export const AuthProvider = ({children}) => {
@@ -12,15 +13,16 @@ export const AuthProvider = ({children}) => {
             });
             if(res.status === 200){
                 setIsUserLoggedIn(true);
-                setIsLoading(true);
+                setIsLoading(false);
             }
             else{
                 setIsUserLoggedIn(false);
                 setIsLoading(false);
+                toast.error(res.data)
             }
         }
         catch(err){
-            console.log(err);
+            console.log(err);   
         }
     }
     useEffect(()=>{
@@ -35,4 +37,3 @@ export const AuthProvider = ({children}) => {
 export const useAuth = () => {
     return useContext(AuthContext);
 }
-
