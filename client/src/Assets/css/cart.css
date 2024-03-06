@@ -35,3 +35,9 @@
     color:white;
     font-size: 1.4rem;
  }
+ .cart{
+   display:flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+ }
