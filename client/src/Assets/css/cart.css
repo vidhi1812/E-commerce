@@ -1,0 +1,37 @@
+ .remocdf{
+    display: flex;
+    justify-content: space-between;
+     align-items: center;
+     border: 2px solid black;
+     width:35vw;
+     height :20vh;
+     margin:2rem;
+     border-radius: 2rem;
+     box-shadow: 0 0 0 5px rgba(0,0,0,0.5);
+ }
+
+ .removecart{
+     width:10vw;
+     height:16vh;
+     margin:2rem;
+ }
+ .renkf{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap:1rem;
+    font-size: 20px;
+ }
+ .bgyt{
+    margin-right:2rem;
+ }
+ .btncd{
+    height:3rem;
+    width:8rem;
+    border-radius: .5rem;
+ }
+ .btncd:hover{
+    background-color: black;
+    color:white;
+    font-size: 1.4rem;
+ }

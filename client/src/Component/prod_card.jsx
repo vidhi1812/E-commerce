@@ -1,6 +1,8 @@
 import React from "react";
 import Logo1 from "../Assets/Images/login.jpg"
-import "../Assets/css/product.css"
+import "../Assets/css/product.css";
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+
 const Prod_cart = () => {
   return (
     <div className="prodcart1">
@@ -16,7 +18,9 @@ const Prod_cart = () => {
 
       </div>
       <div className="pryu2"><div className="prod_prop">category</div>
-      <div className="prod_btn"> <button className="btn">ADD TO CART</button></div></div>
+      <div className="prod_btn"> <button className="btn">
+       
+       <AddShoppingCartIcon/> ADD TO CART</button></div></div>
     </div>
   );
 };
