@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../Assets/css/Signupform.css";
 import { NavLink,useNavigate } from "react-router-dom";
 import axios from "axios";
 import {toast} from 'react-toastify';
+import { useAuth } from "../store/store";
 export const Signupform = () => {
   const navigate = useNavigate();
+  const {isUserLoggedIn} = useAuth();
+  useEffect(()=>{
+    if(isUserLoggedIn){
+      navigate('/');
+    }
+  })
   const [user, setUser] = useState({
     username: "",
     phone: "",
