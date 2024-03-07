@@ -53,7 +53,7 @@ const logout =async(req,res)=>{
 }
 const validtoken = async (req, res) => {
   try {
-    const { username, email, carts } = req.user;
+    const {username, email, carts } = req.user;
     res.status(200).json({ username, email, carts });
   } catch (err) {
     res.status(400).json(err);
