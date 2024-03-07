@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }) => {
           setIsLoading(false);
         } else {
           setIsUserLoggedIn(false);
-          setIsLoading(false);
+          setIsLoading(true);
           
         }
       } catch (err) {
@@ -38,7 +38,7 @@ export const AuthProvider = ({ children }) => {
       });
       if (res.status === 200) {
         setIsUserLoggedIn(false);
-        setIsLoading(false);
+        setIsLoading(true);
         toast.success("Logout Successfully");
       } else {
         setIsUserLoggedIn(true);
