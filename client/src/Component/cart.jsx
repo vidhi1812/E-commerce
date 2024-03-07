@@ -64,7 +64,7 @@ const Cart = () => {
           return {
             ...item,
             quantity: quantity,
-            totalprice: item.price * quantity,
+            totalprice: (item.price * quantity).toFixed(2),
           };
         }
         return item;

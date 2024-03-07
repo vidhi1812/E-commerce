@@ -13,7 +13,7 @@ const Navbar45 = () => {
       <div>
         <ul className="nav-l">
           <li>
-            <NavLink to="/product" activeClassName="active">
+            <NavLink to="/" activeClassName="active">
               Product
             </NavLink>
           </li>
