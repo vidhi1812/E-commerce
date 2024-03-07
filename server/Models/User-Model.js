@@ -2,11 +2,7 @@ const mongoose = require("mongoose");
 const bcrtpt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const cart = new mongoose.Schema({
-  pid:{
-    type:String,
-    required:true,
-    unique:true
-  },
+  pid:String,
   name:String,
   price:String,
   image_url:String,
@@ -21,7 +17,6 @@ const userSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    unique:true,
     min: 6,
     max: 255,
   },

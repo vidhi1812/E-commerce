@@ -46,10 +46,14 @@ const Product = () => {
       if(res.status === 200){
         toast.success("Product add")
       }
-      else{
-        toast.error("try again")
+    } catch (err) {
+      if(err.response.status === 302){
+        toast.error("Product already exists in the cart")
       }
-    } catch (err) {}
+      else{
+        toast.error("Product does not exist")
+      }
+    }
   };
   return (
     <div className="Product-section">
