@@ -19,12 +19,10 @@ export const AuthProvider = ({ children }) => {
           setIsUserLoggedIn(true);
           setUser(res.data);
           setIsLoading(false);
-        } else {
-          setIsUserLoggedIn(false);
-          setIsLoading(true);
-          
         }
       } catch (err) {
+        setIsUserLoggedIn(false);
+          setIsLoading(true);
         toast.error('please login first');
       }
   };
@@ -40,13 +38,11 @@ export const AuthProvider = ({ children }) => {
         setIsUserLoggedIn(false);
         setIsLoading(true);
         toast.success("Logout Successfully");
-      } else {
-        setIsUserLoggedIn(true);
-        setIsLoading(false);
-        toast.error(res.data);
       }
     } catch (err) {
-      console.log(err);
+      setIsUserLoggedIn(true);
+        setIsLoading(false);
+        toast.error(err.message);
     }
   };
   return (

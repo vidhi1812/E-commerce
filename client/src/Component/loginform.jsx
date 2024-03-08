@@ -43,11 +43,9 @@ const LoginForm = () => {
         toast.success("Login Successfully");
         window.location.reload();
         navigate("/");
-      } else {
-        toast.error("Login Failed");
       }
     } catch (err) {
-      console.log(err);
+      toast.error("Login Failed");
     }
   };
   return (

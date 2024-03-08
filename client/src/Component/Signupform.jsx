@@ -44,12 +44,9 @@ export const Signupform = () => {
         toast.success('Register Successfully');
         navigate('/login');
       }
-      else{
-        toast.error('Register Failed');
-      }
     }
     catch(e){
-      console.log(e);
+      toast.error('Register Failed');
     }
   };
   return (

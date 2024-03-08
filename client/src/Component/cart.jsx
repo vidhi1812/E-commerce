@@ -26,11 +26,9 @@ const Cart = () => {
       });
       if (res.status === 200) {
         setCart(res.data);
-      } else {
-        toast.error("try again");
-      }
+      } 
     } catch (err) {
-      console.log(err);
+      toast.error("try again");
     }
   };
   const deletecart = async (id) => {
@@ -47,11 +45,9 @@ const Cart = () => {
       if (res.status === 200) {
         toast.success("Product remove");
         getCart();
-      } else {
-        toast.error("try again");
-      }
+      } 
     } catch (err) {
-      console.log(err);
+      toast.error("try again");
     }
   };
   useEffect(() => {
@@ -65,6 +61,7 @@ const Cart = () => {
             ...item,
             quantity: quantity,
             totalprice: (item.price * quantity).toFixed(2),
+            // placeorder: (item.placeorder+=item.price*quantity).toFixed(2),
           };
         }
         return item;
@@ -121,6 +118,7 @@ const Cart = () => {
                 Remove
               </button>
             </div>
+            {/* {item.placeorder} */}
           </div>
         ))}
       </div>
