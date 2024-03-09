@@ -3,14 +3,17 @@ import "../Assets/css/loginform.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
-import {useAuth} from "../store/store";
+import { useAuth } from "../store/store";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 axios.defaults.withCredentials = true;
 const LoginForm = () => {
-  const {isUserLoggedIn,isloading} = useAuth();
+  const { isUserLoggedIn, isloading } = useAuth();
   const navigate = useNavigate();
-  useEffect(()=>{
-    if(isUserLoggedIn) navigate('/')
-  })
+  useEffect(() => {
+    if (isUserLoggedIn) navigate("/");
+  });
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -55,39 +58,55 @@ const LoginForm = () => {
           <h2 className="head">LOGIN</h2>
         </div>
         <div>
-          <form onSubmit={submitOn} className="login-fm">
+          <Box
+            component="form"
+            onSubmit={submitOn}
+            sx={{
+              "& .MuiTextField-root": { m: 1, width: "25ch" },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            {/* <form onSubmit={submitOn} className="login-fm"> */}
             <div>
-              <input
-                type="email"
-                placeholder="Enter Your Email"
-                name="email"
-                onChange={handlechange}
+              <TextField
                 className="lc"
                 required
+                id="outlined-required"
+                type="email"
+                placeholder="Enter Your Email"
+                label="Email"
+                name="email"
                 autoComplete="off"
+                onChange={handlechange}
                 value={user.email}
               />
             </div>
-            <br />
             <div>
-              <input
+              <TextField
+                required
+                id="outlined-required"
+                className="lc"
                 type="password"
                 placeholder="Enter Your Password"
+                label="Password"
                 name="password"
-                onChange={handlechange}
-                className="lc"
-                required
                 autoComplete="off"
+                onChange={handlechange}
                 value={user.password}
               />
             </div>
             <br />
             <div className="beauty">
-              <button type="submit" className="button">
+              {/* <button type="submit" className="button">
+                  Login
+                </button> */}
+              <Button variant="contained" type="submit">
                 Login
-              </button>
+              </Button>
             </div>
-          </form>
+            {/* </form> */}
+          </Box>
         </div>
         <div>
           <p className="plog">
