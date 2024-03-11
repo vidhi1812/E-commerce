@@ -11,5 +11,4 @@ const Logout = () => {
     navigate("/login")
   )
 }
-
 export default Logout
