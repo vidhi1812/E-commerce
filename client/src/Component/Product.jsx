@@ -5,8 +5,9 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import "../Assets/css/product.css"
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import "../Assets/css/product.css";
+import Button from "@mui/material/Button";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 axios.defaults.withCredentials = true;
 const Product = () => {
   const navigate = useNavigate();
@@ -43,15 +44,14 @@ const Product = () => {
           withCredentials: true,
         }
       );
-      if(res.status === 200){
-        toast.success("Product add")
+      if (res.status === 200) {
+        toast.success("Product add");
       }
     } catch (err) {
-      if(err.response.status === 302){
-        toast.error("Product already exists in the cart")
-      }
-      else{
-        toast.error("Product does not exist")
+      if (err.response.status === 302) {
+        toast.error("Product already exists in the cart");
+      } else {
+        toast.error("Product does not exist");
       }
     }
   };
@@ -79,9 +79,9 @@ const Product = () => {
               <div className="pryu2">
                 <div className="prod_prop">{item.category}</div>
                 <div className="prod_btn">
-                  <button className="btn" onClick={() => addcart(item._id)}>
-                    ADD TO CART <AddShoppingCartIcon/>
-                  </button>
+                  <Button variant="contained" onClick={() => addcart(item._id)}>
+                    <AddShoppingCartIcon /> ADD TO CART
+                  </Button>
                 </div>
               </div>
             </div>
