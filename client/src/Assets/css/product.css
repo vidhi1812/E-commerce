@@ -46,3 +46,44 @@
 .heading {
   text-align: center;
 }
+
+
+@media only screen and (min-width: 480px) and (max-width: 768px)  {
+    
+  .heading{
+     text-align: center;
+     margin-left:16rem;
+  }
+  .prodcart1 {
+    border: 2px solid black;
+    color: blue;
+    width: 70vw;
+    height: 67vh;
+    margin-left: 18rem;
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.114);
+    background-color:rgb(9, 229, 152);
+  }
+  .pro5 {
+    width: 69.9vw;
+    height:40vh;
+  }
+  .pro_ct56 {
+    font-size: 1.4rem;
+    padding: 0rem 1rem;
+  }
+  .pryu2 {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.7rem;
+    font-size:1.5rem;
+  }
+  .pro_cart5443 {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.7rem;
+    font-size:1.5rem ;
+  }
+  .prod_btn:hover{
+    background-color:red;
+  }
+  }
