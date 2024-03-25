@@ -1,20 +1,23 @@
 
   .nav-card {
-    background-color:transparent;
+ 
     padding: 10px;
     display: flex;
     justify-content: space-evenly;
+   background:black;
   
   }
   
   .ecomm {
-    margin-right: 26px;
+    
+    margin-right: 24px;
   }
   
   .logo {
     width: 50px;
     height: auto;
-    margin-left:2px;
+    margin-left:1em;
+    margin-top:1.4rem;
   }
   
   .nav-l {
@@ -25,14 +28,23 @@
   .nav-l li {
     margin-right: 23px;
      font-size: 1.8rem;
+     padding:.5rem;
+     
   }
   
   
   .nav-l li a {
     text-decoration: none;
-    color: #000000;
+    color: white;
     display: flex;
     align-items: center;
+  }
+  .nav-l li a:hover{
+   
+    font-size: 2rem;
+   color:blue;
+   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+   text-transform: uppercase;
   }
   
  
