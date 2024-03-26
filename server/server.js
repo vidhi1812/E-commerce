@@ -8,6 +8,7 @@ const AuthRoute = require("./Routes/Auth-route");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const AdminRoute = require('./Routes/Admin-route');
 app.use(
   cors({
     origin: "http://localhost:3000",
@@ -20,6 +21,7 @@ app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/api/auth", AuthRoute);
+app.use("/api/admin", AdminRoute);
 app.use(errorMiddleware);
 dbconnect()
   .then(() => {
