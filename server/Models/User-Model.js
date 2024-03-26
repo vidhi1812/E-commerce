@@ -37,6 +37,10 @@ const userSchema = new mongoose.Schema({
     type:Boolean,
     default:false
   },
+  role :{
+    type:String,
+    default:"user"
+  },
   date: {
     type: Date,
     default: Date.now,
@@ -55,10 +59,10 @@ userSchema.pre("save", async function (next) {
   userSchema.methods.generateAuthToken = async function () {
     try {
       return jwt.sign(
-        { _id: this._id, email: this.email },
+        { _id: this._id, email: this.email, role:this.role, isAdmin:this.isAdmin},
         process.env.SECRET_KEY,
         {
-          expiresIn: "2m",
+          expiresIn: "4m",
         }
       );
     } catch (err) {
@@ -69,10 +73,10 @@ userSchema.pre("save", async function (next) {
   userSchema.methods.generateRefeshAuthToken = async function () {
     try {
       return jwt.sign(
-        { _id: this._id, email: this.email },
+        { _id: this._id, email: this.email , role:this.role, isAdmin:this.isAdmin},
         process.env.REFRESH_SECRET_KEY,
         {
-          expiresIn: "5m",
+          expiresIn: "10m",
         }
       );
     } catch (err) {
