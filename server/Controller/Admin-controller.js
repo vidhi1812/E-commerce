@@ -11,12 +11,14 @@ const transporter = nodemailer.createTransport({
 })
 const alluser = async (req, res) => {
   try {
-    const user = await User.find({ isAdmin: false, role: "user" }).select({
+    const users = await User.find({isAdmin:false, role:'user'}).select({
       password: 0,
     });
-    res.status(200).json(user);
+    console.log(users)
+    res.status(200).json(users);
   } catch (err) {
-    res.status(400).json(err);
+    console.log(err)
+    res.status(400).json(err.message);
   }
 };
 const userid = async (req, res) => {

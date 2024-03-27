@@ -71,18 +71,7 @@ export const Signupform = () => {
             noValidate
             autoComplete="off"
           >
-            {/* <form onSubmit={submitOn} className="login-fm"> */}
             <div id="namecard">
-              {/* <input
-                type="text"
-                placeholder="Enter Username"
-                name="username"
-                onChange={handlechange}
-                className="lc1"
-                required
-                autoComplete="off"
-                value={user.username}
-              /> */}
               <TextField
                 className="lc"
                 required
@@ -97,16 +86,6 @@ export const Signupform = () => {
               />
             </div>
             <div>
-              {/* <input
-                type="number"
-                placeholder="Enter Your Mobile phone"
-                name="phone"
-                onChange={handlechange}
-                className="lc1"
-                required
-                autoComplete="off"
-                value={user.phone}
-              /> */}
               <TextField
                 required
                 id="outlined-required"
@@ -121,16 +100,6 @@ export const Signupform = () => {
               />
             </div>
             <div>
-              {/* <input
-                type="email"
-                placeholder="Enter Your Email"
-                name="email"
-                onChange={handlechange}
-                className="lc1"
-                required
-                autoComplete="off"
-                value={user.email}
-              /> */}
               <TextField
                 className="lc"
                 required
@@ -145,16 +114,6 @@ export const Signupform = () => {
               />
             </div>
             <div>
-              {/* <input
-                type="password"
-                placeholder="Enter Your Password"
-                name="password"
-                onChange={handlechange}
-                className="lc1"
-                required
-                autoComplete="off"
-                value={user.password}
-              /> */}
               <TextField
                 required
                 id="outlined-required"
@@ -169,14 +128,10 @@ export const Signupform = () => {
               />
             </div>
             <div className="beauty">
-              {/* <button type="submit" className="button1">
-                SIGNUP
-              </button> */}
               <Button variant="contained" type="submit">
                 Signup
               </Button>
             </div>
-            {/* </form> */}
           </Box>
         </div>
         <div>

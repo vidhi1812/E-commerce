@@ -67,7 +67,6 @@ const LoginForm = () => {
             noValidate
             autoComplete="off"
           >
-            {/* <form onSubmit={submitOn} className="login-fm"> */}
             <div>
               <TextField
                 className="lc"
@@ -98,14 +97,10 @@ const LoginForm = () => {
             </div>
             <br />
             <div className="beauty">
-              {/* <button type="submit" className="button">
-                  Login
-                </button> */}
               <Button variant="contained" type="submit">
                 Login
               </Button>
             </div>
-            {/* </form> */}
           </Box>
         </div>
         <div>
