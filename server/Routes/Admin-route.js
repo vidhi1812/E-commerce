@@ -9,7 +9,7 @@ router.route('/user/:id').patch(auth,adminauth,adminController.useridupdate);
 router.route('/user/:id').delete(auth,adminauth,adminController.useriddelete);
 router.route('/allseller').get(auth,adminauth,adminController.allseller);
 router.route('/seller').post(auth,adminauth,adminController.sellerCreate);
-router.route('/seller/verify').get(auth,adminauth,adminController.verifyseller);
+router.route('/seller/verify').get(adminController.verifyseller);
 router.route('/seller/:id').get(auth,adminauth,adminController.sellerid);
 router.route('/seller/:id').patch(auth,adminauth,adminController.selleridupdate);
 router.route('/seller/:id').delete(auth,adminauth,adminController.selleriddelete);
