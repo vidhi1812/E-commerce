@@ -30,7 +30,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     min: 6,
-    max: 1024,
+    max: 10,
   },
   carts : [cart],
   isAdmin:{
@@ -40,6 +40,14 @@ const userSchema = new mongoose.Schema({
   role :{
     type:String,
     default:"user"
+  },
+  verified :{
+    type:Boolean,
+    default:false
+  },
+  verificationToken:{
+    type:String,
+    default:null
   },
   date: {
     type: Date,
