@@ -3,20 +3,22 @@ const User = require("../Models/User-Model");
 const nodemailer = require('nodemailer');
 const uuid = require('uuid');
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  service: 'Gmail',
   auth :{
     user: 'du04192@gmail.com',
-    pass: 'du04192020'
+    pass: 'sgzy aqiy utun gvdr'
   }
 })
 const alluser = async (req, res) => {
   try {
-    const user = await User.find({ isAdmin: false, role: "user" }).select({
+    const users = await User.find({isAdmin:false, role:'user'}).select({
       password: 0,
     });
-    res.status(200).json(user);
+    console.log(users)
+    res.status(200).json(users);
   } catch (err) {
-    res.status(400).json(err);
+    console.log(err)
+    res.status(400).json(err.message);
   }
 };
 const userid = async (req, res) => {
@@ -47,7 +49,7 @@ const useriddelete = async (req, res) => {
 };
 const allseller = async (req, res) => {
   try {
-    const seller = await User.find({ isAdmin: false, role: "seller" }).select({
+    const seller = await User.find({ isAdmin: false, role: 'seller' }).select({
       password: 0,
     });
     res.status(200).json(seller);
@@ -57,7 +59,7 @@ const allseller = async (req, res) => {
 };
 const sellerCreate = async (req, res) => {
   try {
-    const { name, email, password, phone } = req.body;
+    const { username, email, password, phone } = req.body;
     const role = "seller";
     if (!username || !email || !password) {
       return res.status(400).json({ msg: "Please fill in all fields" });
@@ -65,12 +67,24 @@ const sellerCreate = async (req, res) => {
       return res.status(400).json({ msg: "User already exists" });
     }
     const verificationToken = uuid.v4();
-    User.push({ name, email, password, phone, role , verified: false, verificationToken });
+    const newUser = new User({
+      username,
+      email,
+      password,
+      phone,
+      role,
+      verified: false,
+      verificationToken,
+    });
+    await newUser.save();
+    console.log(newUser)
     transporter.sendMail({
       from: 'du04192@gmail.com',
       to: email,
       subject: 'Email Verification',
-      text: `Click the following link to verify your email: http://localhost:3000/verify?token=${verificationToken}`
+      text: `Click the following link to verify your email: http://localhost:9000/api/admin/seller/verify?token=${verificationToken}
+       your username is ${username} and password is ${password}
+      `
     }, (error, info) => {
       if (error) {
         console.error('Error sending email:', error);
@@ -80,18 +94,19 @@ const sellerCreate = async (req, res) => {
       res.status(200).json({ message: 'Verification email sent' });
     });
   } catch (err) {
-    res.status(400).json(err);
+    res.status(400).json(err.message);
   }
 };
 const verifyseller = async(req,res)=>{
   try{
     const {token} = req.query;
-    const user = User.find({verificationToken: token});
+    const user = await User.findOne({verificationToken: token}).exec();
     if(!user){
       return res.status(400).json({msg: 'Invalid token'});
     }
     user.verified = true;
     user.verificationToken = null;
+    await user.save();
     res.status(200).json({msg: 'Email verified successfully'});
   }
   catch(err){
