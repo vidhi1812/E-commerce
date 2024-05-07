@@ -1,7 +1,7 @@
 const User = require("../Models/User-Model");
 const Product = require("../Models/Product-model");
 const bcrypt = require("bcryptjs");
-const jwt= require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 const register = async (req, res) => {
   try {
     const { username, email, phone, password } = req.body;
@@ -10,7 +10,7 @@ const register = async (req, res) => {
     } else if (await User.findOne({ email })) {
       return res.status(400).json({ msg: "User already exists" });
     }
-    const newUser = new User({ username, email, password, phone});
+    const newUser = new User({ username, email, password, phone });
     await newUser.save();
     res.status(201).json({ msg: "User created successfully" });
   } catch (err) {
@@ -34,26 +34,36 @@ const login = async (req, res) => {
     const token = await user.generateAuthToken();
     const refershToken = await user.generateRefeshAuthToken();
     res
-    .cookie("token",token,{httpOnly:true,secure:true,maxAge:60*1000,sameSite:'strict'})
-      .cookie("refershToken", refershToken, { httpOnly: true,secure:true,maxAge:60*3*1000,sameSite:'strict'})
+      .cookie("token", token, {
+        httpOnly: true,
+        secure: true,
+        maxAge: 60 * 1000,
+        sameSite: "strict",
+      })
+      .cookie("refershToken", refershToken, {
+        httpOnly: true,
+        secure: true,
+        maxAge: 60 * 3 * 1000,
+        sameSite: "strict",
+      })
       .status(200)
-      .json({ message: "login suceesful"});
+      .json({ message: "login suceesful" });
   } catch (err) {
     res.status(400).json(err);
   }
 };
-const logout =async(req,res)=>{
-  try{
-    res.clearCookie("token")
-    res.clearCookie("refershToken")
-    res.status(200).json({message:"logout successful"})
-  }catch(err){
-    res.status(400).json(err)
+const logout = async (req, res) => {
+  try {
+    res.clearCookie("token");
+    res.clearCookie("refershToken");
+    res.status(200).json({ message: "logout successful" });
+  } catch (err) {
+    res.status(400).json(err);
   }
-}
+};
 const validtoken = async (req, res) => {
   try {
-    const {username, email, carts } = req.user;
+    const { username, email, carts } = req.user;
     res.status(200).json({ username, email, carts });
   } catch (err) {
     res.status(400).json(err);
@@ -61,6 +71,7 @@ const validtoken = async (req, res) => {
 };
 const product = async (req, res) => {
   try {
+    console.log("hskjja");
     const page = parseInt(req.query.page);
     const limit = 8;
     const startIndex = (page - 1) * limit;
@@ -78,8 +89,8 @@ const product = async (req, res) => {
         limit: limit,
       };
     }
-    results = await Product.find().limit(limit).skip(startIndex).exec();
-    res.status(200).json(results);
+    let results1 = await Product.find().limit(limit).skip(startIndex).exec();
+    res.status(200).json(results1);
   } catch (err) {
     res.status(400).json(err);
   }
@@ -91,10 +102,14 @@ const addtocart = async (req, res) => {
     if (!product) {
       return res.status(400).json({ msg: "Product does not exist" });
     }
-    const usercart = user.carts.map(cart=>cart._id);
-    const existingProduct = usercart.find(item=>item.toString()==product._id);
+    const usercart = user.carts.map((cart) => cart._id);
+    const existingProduct = usercart.find(
+      (item) => item.toString() == product._id
+    );
     if (existingProduct) {
-      return res.status(302).json({ msg: "Product already exists in the cart" });
+      return res
+        .status(302)
+        .json({ msg: "Product already exists in the cart" });
     }
     user.carts.push(product);
     await user.save();
@@ -139,5 +154,5 @@ module.exports = {
   addtocart,
   fetchproduct,
   deletecart,
-  logout
+  logout,
 };
