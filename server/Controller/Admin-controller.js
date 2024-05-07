@@ -77,7 +77,6 @@ const sellerCreate = async (req, res) => {
       verificationToken,
     });
     await newUser.save();
-    console.log(newUser)
     transporter.sendMail({
       from: 'du04192@gmail.com',
       to: email,
@@ -90,7 +89,6 @@ const sellerCreate = async (req, res) => {
         console.error('Error sending email:', error);
         return res.status(500).json({ error: 'Failed to send verification email' });
       }
-      console.log('Verification email sent:', info.response);
       res.status(200).json({ message: 'Verification email sent' });
     });
   } catch (err) {

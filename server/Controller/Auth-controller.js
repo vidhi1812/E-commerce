@@ -78,8 +78,8 @@ const product = async (req, res) => {
         limit: limit,
       };
     }
-    results1 = await Product.find().limit(limit).skip(startIndex).exec();
-    res.status(200).json(results1);
+    results = await Product.find().limit(limit).skip(startIndex).exec();
+    res.status(200).json(results);
   } catch (err) {
     res.status(400).json(err);
   }
